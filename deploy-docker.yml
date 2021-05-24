@@ -10,4 +10,4 @@
     - name: remove docker images
       shell: docker image rm -f bijuvinoth/javawebappapp
     - name: create docker image
-      shell: docker run -d --name MPC-test -p 8443:8080 bijuvinoth/javawebappapp
+      shell: docker run -d --name MPC-test -p 8443:8080 bijuvinoth/javawebappapp:{{DOCKER_TAG}}
