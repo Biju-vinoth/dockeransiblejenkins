@@ -1,13 +1,17 @@
 ---
-  - hosts: 10.87.3.47
-    become: true
-    tasks:
-
-    - name: stop previous version docker
+- hosts: 10.87.3.47
+  become: True
+  tasks:
+  - name: stop previous version docker
       shell: docker stop MPC-test
     - name: remove stopped container
       shell: docker rm -f MPC-test
     - name: remove docker images
-      shell: docker image rm -f bijuvinoth/javawebappapp:latest
-    - name: create docker image
-      shell: docker run -d --name MPC-test -p 8443:8080 bijuvinoth/javawebappapp:latest
+      shell: docker image rm -f bijuvinoth/javawebappapp:{{DOCKER_TAG}}
+  - name: Start the container
+      docker_container:
+        name: MPC-test
+        image: "bijuvinoth/javawebappapp:{{DOCKER_TAG}}"
+        state: started
+        published_ports:
+          - 0.0.0.0:80443:8080
