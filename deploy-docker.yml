@@ -8,6 +8,6 @@
     - name: remove stopped container
       shell: docker rm -f MPC-test
     - name: remove docker images
-      shell: docker image rm -f bijuvinoth/javawebappapp
+      shell: docker image rm -f bijuvinoth/javawebappapp:latest
     - name: create docker image
-      shell: docker run -d --name MPC-test -p 8443:8080 bijuvinoth/javawebappapp
+      shell: docker run -d --name MPC-test -p 8443:8080 bijuvinoth/javawebappapp:latest
